@@ -4,12 +4,14 @@
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
 import 'api/printers.dart';
+import 'api/serialport.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'frb_generated.dart';
 import 'frb_generated.io.dart'
     if (dart.library.js_interop) 'frb_generated.web.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
+import 'package:meta/meta.dart' as meta;
 
 /// Main entrypoint of the Rust API
 class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
@@ -56,7 +58,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.1.0';
 
   @override
-  int get rustContentHash => -1623913211;
+  int get rustContentHash => 107923872;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -128,6 +130,38 @@ abstract class RustLibApi extends BaseApi {
   Future<LddWinPrinter?> crateApiPrintersLddGetPrinterByName(
       {required String name});
 
+  String crateApiSerialportLddSerialPortInfoAutoAccessorGetPortName(
+      {required LddSerialPortInfo that});
+
+  LddSerialPortType crateApiSerialportLddSerialPortInfoAutoAccessorGetPortType(
+      {required LddSerialPortInfo that});
+
+  void crateApiSerialportLddSerialPortInfoAutoAccessorSetPortName(
+      {required LddSerialPortInfo that, required String portName});
+
+  void crateApiSerialportLddSerialPortInfoAutoAccessorSetPortType(
+      {required LddSerialPortInfo that, required LddSerialPortType portType});
+
+  Future<void> crateApiSerialportLddSerialPortInfoOpen(
+      {required LddSerialPortInfo that});
+
+  Future<void> crateApiSerialportNavitePortWriteAll(
+      {required NavitePort that, required List<int> buff});
+
+  Future<List<LddSerialPortInfo>> crateApiSerialportGetAvailablePorts();
+
+  Future<NavitePort> crateApiSerialportTryGetPort(
+      {required String path, required int baudRate});
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_LddSerialPortInfo;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_LddSerialPortInfo;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_LddSerialPortInfoPtr;
+
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_LddWinPrinter;
 
@@ -136,6 +170,14 @@ abstract class RustLibApi extends BaseApi {
 
   CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_LddWinPrinterPtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_NavitePort;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_NavitePort;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_NavitePortPtr;
 }
 
 class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
@@ -704,6 +746,236 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         argNames: ["name"],
       );
 
+  @override
+  String crateApiSerialportLddSerialPortInfoAutoAccessorGetPortName(
+      {required LddSerialPortInfo that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 21)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_String,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kCrateApiSerialportLddSerialPortInfoAutoAccessorGetPortNameConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiSerialportLddSerialPortInfoAutoAccessorGetPortNameConstMeta =>
+          const TaskConstMeta(
+            debugName: "LddSerialPortInfo_auto_accessor_get_port_name",
+            argNames: ["that"],
+          );
+
+  @override
+  LddSerialPortType crateApiSerialportLddSerialPortInfoAutoAccessorGetPortType(
+      {required LddSerialPortInfo that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 22)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_ldd_serial_port_type,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kCrateApiSerialportLddSerialPortInfoAutoAccessorGetPortTypeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiSerialportLddSerialPortInfoAutoAccessorGetPortTypeConstMeta =>
+          const TaskConstMeta(
+            debugName: "LddSerialPortInfo_auto_accessor_get_port_type",
+            argNames: ["that"],
+          );
+
+  @override
+  void crateApiSerialportLddSerialPortInfoAutoAccessorSetPortName(
+      {required LddSerialPortInfo that, required String portName}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+            that, serializer);
+        sse_encode_String(portName, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 23)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kCrateApiSerialportLddSerialPortInfoAutoAccessorSetPortNameConstMeta,
+      argValues: [that, portName],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiSerialportLddSerialPortInfoAutoAccessorSetPortNameConstMeta =>
+          const TaskConstMeta(
+            debugName: "LddSerialPortInfo_auto_accessor_set_port_name",
+            argNames: ["that", "portName"],
+          );
+
+  @override
+  void crateApiSerialportLddSerialPortInfoAutoAccessorSetPortType(
+      {required LddSerialPortInfo that, required LddSerialPortType portType}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+            that, serializer);
+        sse_encode_ldd_serial_port_type(portType, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 24)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta:
+          kCrateApiSerialportLddSerialPortInfoAutoAccessorSetPortTypeConstMeta,
+      argValues: [that, portType],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta
+      get kCrateApiSerialportLddSerialPortInfoAutoAccessorSetPortTypeConstMeta =>
+          const TaskConstMeta(
+            debugName: "LddSerialPortInfo_auto_accessor_set_port_type",
+            argNames: ["that", "portType"],
+          );
+
+  @override
+  Future<void> crateApiSerialportLddSerialPortInfoOpen(
+      {required LddSerialPortInfo that}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+            that, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 25, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiSerialportLddSerialPortInfoOpenConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiSerialportLddSerialPortInfoOpenConstMeta =>
+      const TaskConstMeta(
+        debugName: "LddSerialPortInfo_open",
+        argNames: ["that"],
+      );
+
+  @override
+  Future<void> crateApiSerialportNavitePortWriteAll(
+      {required NavitePort that, required List<int> buff}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+            that, serializer);
+        sse_encode_list_prim_u_8_loose(buff, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 26, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_unit,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiSerialportNavitePortWriteAllConstMeta,
+      argValues: [that, buff],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiSerialportNavitePortWriteAllConstMeta =>
+      const TaskConstMeta(
+        debugName: "NavitePort_write_all",
+        argNames: ["that", "buff"],
+      );
+
+  @override
+  Future<List<LddSerialPortInfo>> crateApiSerialportGetAvailablePorts() {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 27, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiSerialportGetAvailablePortsConstMeta,
+      argValues: [],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiSerialportGetAvailablePortsConstMeta =>
+      const TaskConstMeta(
+        debugName: "get_available_ports",
+        argNames: [],
+      );
+
+  @override
+  Future<NavitePort> crateApiSerialportTryGetPort(
+      {required String path, required int baudRate}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_String(path, serializer);
+        sse_encode_u_32(baudRate, serializer);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 28, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiSerialportTryGetPortConstMeta,
+      argValues: [path, baudRate],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiSerialportTryGetPortConstMeta =>
+      const TaskConstMeta(
+        debugName: "try_get_port",
+        argNames: ["path", "baudRate"],
+      );
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_LddSerialPortInfo => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_LddSerialPortInfo => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo;
+
   RustArcIncrementStrongCountFnType
       get rust_arc_increment_strong_count_LddWinPrinter => wire
           .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter;
@@ -712,12 +984,44 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       get rust_arc_decrement_strong_count_LddWinPrinter => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter;
 
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_NavitePort => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_NavitePort => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort;
+
+  @protected
+  LddSerialPortInfo
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return LddSerialPortInfoImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
   @protected
   LddWinPrinter
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return LddWinPrinterImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  NavitePort
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return NavitePortImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  LddSerialPortInfo
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return LddSerialPortInfoImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -729,6 +1033,22 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  NavitePort
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return NavitePortImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  LddSerialPortInfo
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return LddSerialPortInfoImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   LddWinPrinter
       dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           dynamic raw) {
@@ -737,11 +1057,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  LddSerialPortInfo
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return LddSerialPortInfoImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
   LddWinPrinter
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return LddWinPrinterImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  NavitePort
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return NavitePortImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -766,6 +1102,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  LddUsbPortInfo dco_decode_box_autoadd_ldd_usb_port_info(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_ldd_usb_port_info(raw);
+  }
+
+  @protected
   int dco_decode_i_32(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as int;
@@ -775,6 +1117,51 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   LddPrinterState dco_decode_ldd_printer_state(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return LddPrinterState.values[raw as int];
+  }
+
+  @protected
+  LddSerialPortType dco_decode_ldd_serial_port_type(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    switch (raw[0]) {
+      case 0:
+        return LddSerialPortType_UsbPort(
+          dco_decode_box_autoadd_ldd_usb_port_info(raw[1]),
+        );
+      case 1:
+        return LddSerialPortType_PciPort();
+      case 2:
+        return LddSerialPortType_BluetoothPort();
+      case 3:
+        return LddSerialPortType_Unknown();
+      default:
+        throw Exception("unreachable");
+    }
+  }
+
+  @protected
+  LddUsbPortInfo dco_decode_ldd_usb_port_info(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 5)
+      throw Exception('unexpected arr length: expect 5 but see ${arr.length}');
+    return LddUsbPortInfo(
+      vid: dco_decode_u_16(arr[0]),
+      pid: dco_decode_u_16(arr[1]),
+      serialNumber: dco_decode_opt_String(arr[2]),
+      manufacturer: dco_decode_opt_String(arr[3]),
+      product: dco_decode_opt_String(arr[4]),
+    );
+  }
+
+  @protected
+  List<LddSerialPortInfo>
+      dco_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return (raw as List<dynamic>)
+        .map(
+            dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo)
+        .toList();
   }
 
   @protected
@@ -818,6 +1205,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  int dco_decode_u_16(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as int;
+  }
+
+  @protected
+  int dco_decode_u_32(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as int;
+  }
+
+  @protected
   int dco_decode_u_8(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as int;
@@ -836,11 +1235,38 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  LddSerialPortInfo
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return LddSerialPortInfoImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   LddWinPrinter
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return LddWinPrinterImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  NavitePort
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return NavitePortImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  LddSerialPortInfo
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return LddSerialPortInfoImpl.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -854,6 +1280,24 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  NavitePort
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return NavitePortImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  LddSerialPortInfo
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return LddSerialPortInfoImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   LddWinPrinter
       sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           SseDeserializer deserializer) {
@@ -863,11 +1307,29 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  LddSerialPortInfo
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return LddSerialPortInfoImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
   LddWinPrinter
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return LddWinPrinterImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  NavitePort
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return NavitePortImpl.frbInternalSseDecode(
         sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
@@ -894,6 +1356,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  LddUsbPortInfo sse_decode_box_autoadd_ldd_usb_port_info(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_ldd_usb_port_info(deserializer));
+  }
+
+  @protected
   int sse_decode_i_32(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getInt32();
@@ -904,6 +1373,59 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var inner = sse_decode_i_32(deserializer);
     return LddPrinterState.values[inner];
+  }
+
+  @protected
+  LddSerialPortType sse_decode_ldd_serial_port_type(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var tag_ = sse_decode_i_32(deserializer);
+    switch (tag_) {
+      case 0:
+        var var_field0 = sse_decode_box_autoadd_ldd_usb_port_info(deserializer);
+        return LddSerialPortType_UsbPort(var_field0);
+      case 1:
+        return LddSerialPortType_PciPort();
+      case 2:
+        return LddSerialPortType_BluetoothPort();
+      case 3:
+        return LddSerialPortType_Unknown();
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
+  LddUsbPortInfo sse_decode_ldd_usb_port_info(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_vid = sse_decode_u_16(deserializer);
+    var var_pid = sse_decode_u_16(deserializer);
+    var var_serialNumber = sse_decode_opt_String(deserializer);
+    var var_manufacturer = sse_decode_opt_String(deserializer);
+    var var_product = sse_decode_opt_String(deserializer);
+    return LddUsbPortInfo(
+        vid: var_vid,
+        pid: var_pid,
+        serialNumber: var_serialNumber,
+        manufacturer: var_manufacturer,
+        product: var_product);
+  }
+
+  @protected
+  List<LddSerialPortInfo>
+      sse_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    var len_ = sse_decode_i_32(deserializer);
+    var ans_ = <LddSerialPortInfo>[];
+    for (var idx_ = 0; idx_ < len_; ++idx_) {
+      ans_.add(
+          sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+              deserializer));
+    }
+    return ans_;
   }
 
   @protected
@@ -962,6 +1484,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  int sse_decode_u_16(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getUint16();
+  }
+
+  @protected
+  int sse_decode_u_32(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getUint32();
+  }
+
+  @protected
   int sse_decode_u_8(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getUint8();
@@ -980,11 +1514,40 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          LddSerialPortInfo self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as LddSerialPortInfoImpl).frbInternalSseEncode(move: true),
+        serializer);
+  }
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           LddWinPrinter self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(
         (self as LddWinPrinterImpl).frbInternalSseEncode(move: true),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          NavitePort self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as NavitePortImpl).frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          LddSerialPortInfo self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as LddSerialPortInfoImpl).frbInternalSseEncode(move: false),
         serializer);
   }
 
@@ -1000,11 +1563,40 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   @protected
   void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          NavitePort self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as NavitePortImpl).frbInternalSseEncode(move: false), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          LddSerialPortInfo self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as LddSerialPortInfoImpl).frbInternalSseEncode(move: false),
+        serializer);
+  }
+
+  @protected
+  void
       sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           LddWinPrinter self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_usize(
         (self as LddWinPrinterImpl).frbInternalSseEncode(move: false),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          LddSerialPortInfo self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as LddSerialPortInfoImpl).frbInternalSseEncode(move: null),
         serializer);
   }
 
@@ -1016,6 +1608,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     sse_encode_usize(
         (self as LddWinPrinterImpl).frbInternalSseEncode(move: null),
         serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          NavitePort self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as NavitePortImpl).frbInternalSseEncode(move: null), serializer);
   }
 
   @protected
@@ -1040,6 +1641,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_box_autoadd_ldd_usb_port_info(
+      LddUsbPortInfo self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_ldd_usb_port_info(self, serializer);
+  }
+
+  @protected
   void sse_encode_i_32(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putInt32(self);
@@ -1050,6 +1658,48 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       LddPrinterState self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.index, serializer);
+  }
+
+  @protected
+  void sse_encode_ldd_serial_port_type(
+      LddSerialPortType self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    switch (self) {
+      case LddSerialPortType_UsbPort(field0: final field0):
+        sse_encode_i_32(0, serializer);
+        sse_encode_box_autoadd_ldd_usb_port_info(field0, serializer);
+      case LddSerialPortType_PciPort():
+        sse_encode_i_32(1, serializer);
+      case LddSerialPortType_BluetoothPort():
+        sse_encode_i_32(2, serializer);
+      case LddSerialPortType_Unknown():
+        sse_encode_i_32(3, serializer);
+      default:
+        throw UnimplementedError('');
+    }
+  }
+
+  @protected
+  void sse_encode_ldd_usb_port_info(
+      LddUsbPortInfo self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_u_16(self.vid, serializer);
+    sse_encode_u_16(self.pid, serializer);
+    sse_encode_opt_String(self.serialNumber, serializer);
+    sse_encode_opt_String(self.manufacturer, serializer);
+    sse_encode_opt_String(self.product, serializer);
+  }
+
+  @protected
+  void
+      sse_encode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          List<LddSerialPortInfo> self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    for (final item in self) {
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          item, serializer);
+    }
   }
 
   @protected
@@ -1105,6 +1755,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_u_16(int self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putUint16(self);
+  }
+
+  @protected
+  void sse_encode_u_32(int self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putUint32(self);
+  }
+
+  @protected
   void sse_encode_u_8(int self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putUint8(self);
@@ -1120,6 +1782,50 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putBigUint64(self);
   }
+}
+
+@sealed
+class LddSerialPortInfoImpl extends RustOpaque implements LddSerialPortInfo {
+  // Not to be used by end users
+  LddSerialPortInfoImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  LddSerialPortInfoImpl.frbInternalSseDecode(
+      BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_LddSerialPortInfo,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_LddSerialPortInfo,
+    rustArcDecrementStrongCountPtr: RustLib
+        .instance.api.rust_arc_decrement_strong_count_LddSerialPortInfoPtr,
+  );
+
+  String get portName => RustLib.instance.api
+          .crateApiSerialportLddSerialPortInfoAutoAccessorGetPortName(
+        that: this,
+      );
+
+  LddSerialPortType get portType => RustLib.instance.api
+          .crateApiSerialportLddSerialPortInfoAutoAccessorGetPortType(
+        that: this,
+      );
+
+  set portName(String portName) => RustLib.instance.api
+      .crateApiSerialportLddSerialPortInfoAutoAccessorSetPortName(
+          that: this, portName: portName);
+
+  set portType(LddSerialPortType portType) => RustLib.instance.api
+      .crateApiSerialportLddSerialPortInfoAutoAccessorSetPortType(
+          that: this, portType: portType);
+
+  Future<void> open() =>
+      RustLib.instance.api.crateApiSerialportLddSerialPortInfoOpen(
+        that: this,
+      );
 }
 
 @sealed
@@ -1220,4 +1926,28 @@ class LddWinPrinterImpl extends RustOpaque implements LddWinPrinter {
   Future<bool> writeFile({required String filePath, String? jobName}) =>
       RustLib.instance.api.crateApiPrintersLddWinPrinterWriteFile(
           that: this, filePath: filePath, jobName: jobName);
+}
+
+@sealed
+class NavitePortImpl extends RustOpaque implements NavitePort {
+  // Not to be used by end users
+  NavitePortImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  NavitePortImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_NavitePort,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_NavitePort,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_NavitePortPtr,
+  );
+
+  ///写入数据
+  Future<void> writeAll({required List<int> buff}) => RustLib.instance.api
+      .crateApiSerialportNavitePortWriteAll(that: this, buff: buff);
 }

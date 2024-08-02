@@ -7,10 +7,12 @@
 // ignore_for_file: argument_type_not_assignable
 
 import 'api/printers.dart';
+import 'api/serialport.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated_web.dart';
+import 'package:meta/meta.dart' as meta;
 
 abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   RustLibApiImplPlatform({
@@ -21,12 +23,34 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   });
 
   CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_LddSerialPortInfoPtr => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo;
+
+  CrossPlatformFinalizerArg
       get rust_arc_decrement_strong_count_LddWinPrinterPtr => wire
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_NavitePortPtr =>
+      wire.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort;
+
+  @protected
+  LddSerialPortInfo
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          dynamic raw);
 
   @protected
   LddWinPrinter
       dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
+          dynamic raw);
+
+  @protected
+  NavitePort
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          dynamic raw);
+
+  @protected
+  LddSerialPortInfo
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
           dynamic raw);
 
   @protected
@@ -35,13 +59,33 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
+  NavitePort
+      dco_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          dynamic raw);
+
+  @protected
+  LddSerialPortInfo
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          dynamic raw);
+
+  @protected
   LddWinPrinter
       dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           dynamic raw);
 
   @protected
+  LddSerialPortInfo
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          dynamic raw);
+
+  @protected
   LddWinPrinter
       dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
+          dynamic raw);
+
+  @protected
+  NavitePort
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
           dynamic raw);
 
   @protected
@@ -56,10 +100,24 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
+  LddUsbPortInfo dco_decode_box_autoadd_ldd_usb_port_info(dynamic raw);
+
+  @protected
   int dco_decode_i_32(dynamic raw);
 
   @protected
   LddPrinterState dco_decode_ldd_printer_state(dynamic raw);
+
+  @protected
+  LddSerialPortType dco_decode_ldd_serial_port_type(dynamic raw);
+
+  @protected
+  LddUsbPortInfo dco_decode_ldd_usb_port_info(dynamic raw);
+
+  @protected
+  List<LddSerialPortInfo>
+      dco_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          dynamic raw);
 
   @protected
   List<LddWinPrinter>
@@ -81,6 +139,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           dynamic raw);
 
   @protected
+  int dco_decode_u_16(dynamic raw);
+
+  @protected
+  int dco_decode_u_32(dynamic raw);
+
+  @protected
   int dco_decode_u_8(dynamic raw);
 
   @protected
@@ -90,8 +154,23 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   BigInt dco_decode_usize(dynamic raw);
 
   @protected
+  LddSerialPortInfo
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          SseDeserializer deserializer);
+
+  @protected
   LddWinPrinter
       sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
+          SseDeserializer deserializer);
+
+  @protected
+  NavitePort
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          SseDeserializer deserializer);
+
+  @protected
+  LddSerialPortInfo
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
           SseDeserializer deserializer);
 
   @protected
@@ -100,13 +179,33 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           SseDeserializer deserializer);
 
   @protected
+  NavitePort
+      sse_decode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          SseDeserializer deserializer);
+
+  @protected
+  LddSerialPortInfo
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          SseDeserializer deserializer);
+
+  @protected
   LddWinPrinter
       sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           SseDeserializer deserializer);
 
   @protected
+  LddSerialPortInfo
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          SseDeserializer deserializer);
+
+  @protected
   LddWinPrinter
       sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
+          SseDeserializer deserializer);
+
+  @protected
+  NavitePort
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
           SseDeserializer deserializer);
 
   @protected
@@ -121,10 +220,26 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           SseDeserializer deserializer);
 
   @protected
+  LddUsbPortInfo sse_decode_box_autoadd_ldd_usb_port_info(
+      SseDeserializer deserializer);
+
+  @protected
   int sse_decode_i_32(SseDeserializer deserializer);
 
   @protected
   LddPrinterState sse_decode_ldd_printer_state(SseDeserializer deserializer);
+
+  @protected
+  LddSerialPortType sse_decode_ldd_serial_port_type(
+      SseDeserializer deserializer);
+
+  @protected
+  LddUsbPortInfo sse_decode_ldd_usb_port_info(SseDeserializer deserializer);
+
+  @protected
+  List<LddSerialPortInfo>
+      sse_decode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          SseDeserializer deserializer);
 
   @protected
   List<LddWinPrinter>
@@ -146,6 +261,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           SseDeserializer deserializer);
 
   @protected
+  int sse_decode_u_16(SseDeserializer deserializer);
+
+  @protected
+  int sse_decode_u_32(SseDeserializer deserializer);
+
+  @protected
   int sse_decode_u_8(SseDeserializer deserializer);
 
   @protected
@@ -156,8 +277,23 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          LddSerialPortInfo self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           LddWinPrinter self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          NavitePort self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          LddSerialPortInfo self, SseSerializer serializer);
 
   @protected
   void
@@ -166,13 +302,33 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void
+      sse_encode_Auto_RefMut_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          NavitePort self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          LddSerialPortInfo self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           LddWinPrinter self, SseSerializer serializer);
 
   @protected
   void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          LddSerialPortInfo self, SseSerializer serializer);
+
+  @protected
+  void
       sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           LddWinPrinter self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          NavitePort self, SseSerializer serializer);
 
   @protected
   void sse_encode_String(String self, SseSerializer serializer);
@@ -186,11 +342,28 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           LddWinPrinter self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_ldd_usb_port_info(
+      LddUsbPortInfo self, SseSerializer serializer);
+
+  @protected
   void sse_encode_i_32(int self, SseSerializer serializer);
 
   @protected
   void sse_encode_ldd_printer_state(
       LddPrinterState self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_ldd_serial_port_type(
+      LddSerialPortType self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_ldd_usb_port_info(
+      LddUsbPortInfo self, SseSerializer serializer);
+
+  @protected
+  void
+      sse_encode_list_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          List<LddSerialPortInfo> self, SseSerializer serializer);
 
   @protected
   void
@@ -213,6 +386,12 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
           LddWinPrinter? self, SseSerializer serializer);
 
   @protected
+  void sse_encode_u_16(int self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_u_32(int self, SseSerializer serializer);
+
+  @protected
   void sse_encode_u_8(int self, SseSerializer serializer);
 
   @protected
@@ -227,6 +406,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 class RustLibWire implements BaseWire {
   RustLibWire.fromExternalLibrary(ExternalLibrary lib);
 
+  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          int ptr) =>
+      wasmModule
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+              ptr);
+
+  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          int ptr) =>
+      wasmModule
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+              ptr);
+
   void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           int ptr) =>
       wasmModule
@@ -238,6 +429,18 @@ class RustLibWire implements BaseWire {
       wasmModule
           .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
               ptr);
+
+  void rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          int ptr) =>
+      wasmModule
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+              ptr);
+
+  void rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          int ptr) =>
+      wasmModule
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+              ptr);
 }
 
 @JS('wasm_bindgen')
@@ -247,10 +450,26 @@ external RustLibWasmModule get wasmModule;
 @anonymous
 extension type RustLibWasmModule._(JSObject _) implements JSObject {
   external void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          int ptr);
+
+  external void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddSerialPortInfo(
+          int ptr);
+
+  external void
       rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
           int ptr);
 
   external void
       rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerLddWinPrinter(
+          int ptr);
+
+  external void
+      rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
+          int ptr);
+
+  external void
+      rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNavitePort(
           int ptr);
 }

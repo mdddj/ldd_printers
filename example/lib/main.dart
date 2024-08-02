@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ldd_printers/api/printers.dart';
+import 'package:ldd_printers/api/serialport.dart';
 import 'package:ldd_printers/ldd_printers.dart';
 
 void main() {
@@ -29,7 +30,13 @@ class _MyAppState extends State<MyApp> {
         ),
         body: ListView(
           children: [
-            FilledButton(onPressed: _getAllPrinters, child: Text('获取全部打印机'))
+            FilledButton(onPressed: _getAllPrinters, child: Text('获取全部打印机')),
+            ElevatedButton(
+                onPressed: () async {
+                  final ports = await getAvailablePorts();
+                  print("ports:${ports}");
+                },
+                child: Text("获取可用端口"))
           ],
         ),
       ),

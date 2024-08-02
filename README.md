@@ -47,6 +47,12 @@ void main(){
   }
 ```
 
+## 获取可用端口
+```dart
+final ports = await getAvailablePorts();
+```
+
+
 
 ## full example 
 
